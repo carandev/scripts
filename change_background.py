@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 from time import sleep
 from os import getcwd, scandir
 from subprocess import check_output
@@ -13,6 +12,6 @@ def main(path = getcwd()):
             command = f"feh --bg-fill {path}/{img.name}"
             if img.name.endswith(".jpg") or img.name.endswith(".png"):
                 check_output(command, shell=True)
-                sleep(60)
+                sleep(300)
 
 main(path)
