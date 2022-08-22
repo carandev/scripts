@@ -12,6 +12,6 @@ def main(path = getcwd()):
             command = f"feh --bg-fill {path}/{img.name}"
             if img.name.endswith(".jpg") or img.name.endswith(".png"):
                 check_output(command, shell=True)
-                sleep(300)
+                sleep(90)
 
 main(path)
