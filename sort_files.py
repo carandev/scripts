@@ -10,33 +10,35 @@ if not analyse_folder.endswith('/'):
 picture_extensions = (".png", ".jpg", ".jpeg", ".svg")
 doc_extensions = (".docx", ".xlsx", ".pdf", ".pptx", ".txt")
 compresed_extension = (".zip", ".7z", ".rar")
+dev_extensions = (".py", ".json", ".js", ".java")
 
-picture_folder = "/home/carandev/pictures/"
-wallpaper_folder = "/home/carandev/wallpapers/"
-doc_folder = "/home/carandev/documents/"
-compresed_folder = "/home/carandev/compresed-files/"
+folders = {
+    "picture_folder": "/home/carandev/pictures/",
+    "wallpaper_folder": "/home/carandev/wallpapers/",
+    "doc_folder": "/home/carandev/documents/",
+    "compresed_folder": "/home/carandev/compresed-files/",
+    "dev_folder": "/home/carandev/dev-files/"
+}
 
-if not path.exists(picture_folder):
-    mkdir(picture_folder)
-
-elif not path.exists(wallpaper_folder):
-    mkdir(wallpaper_folder)
-
-elif not path.exists(doc_folder):
-    mkdir(doc_folder)
-
-elif not path.exists(compresed_folder):
-    mkdir(compresed_folder)
+for folder in folders.values():
+    if not path.exists(folder):
+        mkdir(folder)
 
 for file in listdir(analyse_folder):
     if file.endswith(picture_extensions):
         if file.startswith("wallhaven"):
-            rename(f"{analyse_folder}{file}", f"{wallpaper_folder}{file}")
+            rename(f"{analyse_folder}{file}",
+                   f"{folders['wallpaper_folder']}{file}")
         else:
-            rename(f"{analyse_folder}{file}", f"{picture_folder}{file}")
+            rename(f"{analyse_folder}{file}",
+                   f"{folders['picture_folder']}{file}")
 
     elif file.endswith(doc_extensions):
-        rename(f"{analyse_folder}{file}", f"{doc_folder}{file}")
+        rename(f"{analyse_folder}{file}", f"{folders['doc_folder']}{file}")
 
     elif file.endswith(compresed_extension):
-        rename(f"{analyse_folder}{file}", f"{compresed_folder}{file}")
+        rename(f"{analyse_folder}{file}",
+               f"{folders['compresed_folder']}{file}")
+
+    elif file.endswith(dev_extensions):
+        rename(f"{analyse_folder}{file}", f"{folders['dev_folder']}{file}")
