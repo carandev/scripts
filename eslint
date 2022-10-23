@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $1 == "react" ]]; then
-  npm install -ED eslint \
+  npm install -ED --force eslint \
     eslint-config-standard \
     eslint-plugin-import \
     eslint-plugin-n \
