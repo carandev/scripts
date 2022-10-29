@@ -1,0 +1,11 @@
+#!/usr/bin/sh
+
+brillo=$(brightnessctl info -d input19::scrolllock | grep "1")
+
+line=$(echo $brillo | grep "Current")
+
+if [[ -z $line ]]; then
+	brightnessctl s 1 -d input19::scrolllock &> /dev/null
+else
+	brightnessctl s 0 -d input19::scrolllock &> /dev/null
+fi
