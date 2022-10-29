@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/usr/bin/bash
+#
+if [[ $1 == "eslint" ]]; then
+  if [[ $2 == "react" ]]; then
+    pnpm add -ED --force eslint \
+      eslint-config-standard \
+      eslint-plugin-import \
+      eslint-plugin-n \
+      eslint-plugin-promise \
+      eslint-plugin-react \
+      eslint-plugin-react-hooks
 
-if [[ $1 == "react" ]]; then
-  npm install -ED --force eslint \
-    eslint-config-standard \
-    eslint-plugin-import \
-    eslint-plugin-n \
-    eslint-plugin-promise \
-    eslint-plugin-react \
-    eslint-plugin-react-hooks
-
-  echo \
-    "
-      module.exports = {
+    echo \
+      "module.exports = {
         env: {
           browser: true,
           es2021: true
@@ -60,5 +60,34 @@ if [[ $1 == "react" ]]; then
           ],
           'no-extra-parens': ['error', 'all', { returnAssign: true }]
         }
-      }" >> .eslintrc.js
+      }" >> .eslintrc.cjs
+  else
+    pnpm add -ED eslint \
+      eslint-config-standard \
+      eslint-plugin-import \
+      eslint-plugin-n \
+      eslint-plugin-promise
+
+    echo "module.exports = {
+      env: {
+        browser: true,
+        es2021: true
+      },
+      extends: 'standard',
+      overrides: [
+      ],
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
+      },
+      rules: {
+      }
+    }" >> .eslintrc.cjs
+  fi
+elif [[ $1 == "stylelint" ]]; then
+  pnpm add -ED stylelint stylelint-config-standard
+
+  echo "{
+    "extends": "stylelint-config-standard"
+  }" >> .stylelintrc.json
 fi
