@@ -85,9 +85,18 @@ if [[ $1 == "eslint" ]]; then
     }" >> .eslintrc.cjs
   fi
 elif [[ $1 == "stylelint" ]]; then
-  pnpm add -ED stylelint stylelint-config-standard
+  pnpm add -ED stylelint \
+    stylelint-config-standard \
+    stylelint-group-selectors \
+    stylelint-config-clean-order
 
-  echo "{
-    "extends": "stylelint-config-standard"
-  }" >> .stylelintrc.json
+  echo '{
+    "extends": ["stylelint-config-standard", "stylelint-config-clean-order"],
+    "plugins": [
+        "stylelint-group-selectors"
+    ],
+    "rules": {
+      "plugin/stylelint-group-selectors": true
+    }
+  }' >> .stylelintrc.json
 fi
