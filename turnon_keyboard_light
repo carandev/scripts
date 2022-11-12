@@ -1,11 +1,13 @@
 #!/usr/bin/sh
 
-brillo=$(brightnessctl info -d input19::scrolllock | grep "1")
+device=$(ls /sys/class/leds | grep scrolllock | head -n1)
+
+brillo=$(brightnessctl info -d $device | grep "1")
 
 line=$(echo $brillo | grep "Current")
 
 if [[ -z $line ]]; then
-	brightnessctl s 1 -d input19::scrolllock &> /dev/null
+	brightnessctl s 1 -d $device &> /dev/null
 else
-	brightnessctl s 0 -d input19::scrolllock &> /dev/null
+	brightnessctl s 0 -d $device &> /dev/null
 fi
