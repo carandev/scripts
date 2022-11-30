@@ -1,0 +1,11 @@
+#!/usr/bin/bash 
+directory="$(pwd)"
+
+rm -rf "$directory/index.ts"
+
+if [[ $1 == "spec" ]]; then 
+  npx barrelsby -qHe *spec* -d $directory --delete
+else
+  npx barrelsby -qH -d $directory --delete
+fi
+
