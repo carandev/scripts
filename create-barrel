@@ -8,4 +8,3 @@ if [[ $1 == "spec" ]]; then
 else
   npx barrelsby -qH -d $directory --delete
 fi
-
